@@ -37,6 +37,17 @@ trait HasHttpRequest
         return $this->request('post', $endpoint, $options);
     }
 
+    protected function json($endpoint, $data, $query = [])
+    {
+        $endpoint = $this->query($endpoint, $query);
+        $data     = array_merge($data, $this->requestParams());
+        $data     = json_encode($data);
+
+        $options['body'] = $data;
+
+        return $this->request('post', $endpoint, $options);
+    }
+
     protected function request($method, $endpoint, $options = [])
     {
         $options = array_merge($options, $this->requestOptions());
