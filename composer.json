@@ -2,7 +2,13 @@
   "name": "ddup/part",
   "description": "小零件",
   "type": "library",
-  "keywords": "struct object ddup api libs",
+  "keywords": [
+    "struct",
+    "object",
+    "ddup",
+    "api",
+    "libs"
+  ],
   "require": {
     "illuminate/support": "^5.7"
   },
