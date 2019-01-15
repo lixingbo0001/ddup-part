@@ -8,8 +8,6 @@ interface ApiResultInterface
 
     function getMsg();
 
-    function get($name);
-
     /**
      * @return  \Illuminate\Support\Collection
      */
