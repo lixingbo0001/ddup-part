@@ -6,7 +6,7 @@
  * Time: 下午5:39
  */
 
-namespace Providers\RequestClient;
+namespace Ddup\Part\Request;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
