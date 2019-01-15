@@ -1,5 +1,7 @@
 <?php namespace Ddup\Part\Api;
 
+use Illuminate\Support\Collection;
+
 interface ApiResultInterface
 {
     function isSuccess();
@@ -8,8 +10,5 @@ interface ApiResultInterface
 
     function getMsg();
 
-    /**
-     * @return  \Illuminate\Support\Collection
-     */
-    function getData();
+    function getData():Collection;
 }

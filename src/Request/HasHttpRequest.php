@@ -9,7 +9,6 @@
 namespace Ddup\Part\Request;
 
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 
 
@@ -25,25 +24,21 @@ trait HasHttpRequest
 
     protected function post($endpoint, $data, $query = [])
     {
-        $endpoint = $this->query($endpoint, $query);
-        $data     = array_merge($data, $this->requestParams());
+        $data = array_merge($data, $this->requestParams());
 
-        if (!is_array($data)) {
-            $options['body'] = $data;
-        } else {
-            $options['form_params'] = $data;
-        }
+        $options['query'] = $query;
+
+        $options['form_params'] = $data;
 
         return $this->request('post', $endpoint, $options);
     }
 
     protected function json($endpoint, $data, $query = [])
     {
-        $endpoint = $this->query($endpoint, $query);
-        $data     = array_merge($data, $this->requestParams());
-        $data     = json_encode($data);
+        $data = array_merge($data, $this->requestParams());
 
-        $options['body'] = $data;
+        $options['query'] = $query;
+        $options['json']  = $data;
 
         return $this->request('post', $endpoint, $options);
     }
@@ -63,17 +58,6 @@ trait HasHttpRequest
         ];
 
         return $options;
-    }
-
-    private function query($endpoint, $querys = [])
-    {
-        $request = new Collection(parse_url($endpoint));
-
-        $query = array_merge($request->get('query', []), $querys);
-
-        if (!$query) return $endpoint;
-
-        return $request->get('path') . '?' . http_build_query($query);
     }
 
     protected function getHttpClient(array $options = [])

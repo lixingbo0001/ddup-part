@@ -10,7 +10,7 @@
          stopOnFailure="false">
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix="Test.php">./src</directory>
+            <directory suffix="Test.php">./test</directory>
         </whitelist>
     </filter>
 </phpunit>

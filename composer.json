@@ -15,7 +15,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Ddup\\Part\\": "src"
+      "Ddup\\Part\\": "src",
+      "Ddup\\Part\\Test\\": "test"
     }
   },
   "require-dev": {
