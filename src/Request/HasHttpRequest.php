@@ -6,7 +6,7 @@
  * Time: 下午5:39
  */
 
-namespace Ddup\Part\Request;
+namespace Ddup\Part\RequestClient;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
@@ -16,17 +16,17 @@ use Psr\Http\Message\ResponseInterface;
 trait HasHttpRequest
 {
 
-    protected function get($endpoint, $query = [], $headers = [])
+    protected function get($endpoint, $query = [])
     {
         return $this->request('get', $endpoint, [
-            'headers' => $headers,
-            'query'   => array_merge($query, $this->querys()),
+            'query' => array_merge($query, $this->requestParams()),
         ]);
     }
 
-    protected function post($endpoint, $data, $options = [])
+    protected function post($endpoint, $data, $query = [])
     {
-        $endpoint = $this->query($endpoint);
+        $endpoint = $this->query($endpoint, $query);
+        $data     = array_merge($data, $this->requestParams());
 
         if (!is_array($data)) {
             $options['body'] = $data;
@@ -39,7 +39,7 @@ trait HasHttpRequest
 
     protected function request($method, $endpoint, $options = [])
     {
-        $options = array_merge($options, $this->options());
+        $options = array_merge($options, $this->requestOptions());
 
         return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($endpoint, $options));
     }
@@ -54,11 +54,11 @@ trait HasHttpRequest
         return $options;
     }
 
-    private function query($endpoint)
+    private function query($endpoint, $querys = [])
     {
         $request = new Collection(parse_url($endpoint));
 
-        $query = array_merge($request->get('query', []), $this->querys());
+        $query = array_merge($request->get('query', []), $querys);
 
         if (!$query) return $endpoint;
 
@@ -88,8 +88,8 @@ trait HasHttpRequest
 
     abstract function getTimeout();
 
-    abstract function options();
+    abstract function requestOptions();
 
-    abstract function querys();
+    abstract function requestParams();
 
 }
