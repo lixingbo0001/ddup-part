@@ -7,6 +7,8 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class StructReadable implements Arrayable
 {
+    private $attrs = [];
+
     public function __construct($data = [])
     {
         $this->transforData($data);
@@ -39,6 +41,8 @@ class StructReadable implements Arrayable
 
     private function batchSet($propertys)
     {
+        $this->attrs = $propertys;
+
         foreach ($propertys as $property => $value) {
             $this->set($property, $value);
         }
@@ -54,6 +58,11 @@ class StructReadable implements Arrayable
     private function attrs()
     {
         return array_keys(get_object_vars($this));
+    }
+
+    public function get($name, $default = null)
+    {
+        return array_get($this->attrs, $name, $default);
     }
 
     public function toArray()

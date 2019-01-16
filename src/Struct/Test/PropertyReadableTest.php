@@ -18,9 +18,10 @@ class PropertyReadableTest extends TestCase
     public function test_render()
     {
         $data = [
-            'age'  => 19,
-            'sex'  => 'boy',
-            'name' => 'blue'
+            'age'        => 19,
+            'sex'        => 'boy',
+            'name'       => 'blue',
+            'not_exists' => '不是属性'
         ];
 
         $object = new UserOptionProvider($data);
@@ -29,6 +30,13 @@ class PropertyReadableTest extends TestCase
         $this->assertEquals($data['name'], $object->name);
         $this->assertEquals($data['sex'], $object->sex);
         $this->assertEquals('boy', $object->sex);
+
         $this->assertNull($object->hobby);
+
+        $this->assertObjectNotHasAttribute('not_exists', $object);
+
+        $this->assertEquals('不是属性', $object->get('not_exists'));
     }
+
+
 }

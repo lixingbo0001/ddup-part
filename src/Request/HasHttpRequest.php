@@ -9,11 +9,24 @@
 namespace Ddup\Part\Request;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
 
 
 trait HasHttpRequest
 {
+
+    /**
+     * @var HandlerStack
+     */
+
+    protected $handlerStack;
+
+    /**
+     * @var int
+     */
+    protected $timeout     = 3;
+    protected $middlewares = [];
 
     protected function get($endpoint, $query = [])
     {
@@ -45,16 +58,38 @@ trait HasHttpRequest
 
     protected function request($method, $endpoint, $options = [])
     {
-        $options = array_merge($options, $this->requestOptions());
+        $options = array_merge($this->requestOptions(), ['handler' => $this->getHandlerStack()], $options);
 
         return $this->unwrapResponse($this->getHttpClient($this->getBaseOptions())->{$method}($endpoint, $options));
+    }
+
+    public function getHandlerStack():HandlerStack
+    {
+        if ($this->handlerStack) {
+            return $this->handlerStack;
+        }
+
+        $this->handlerStack = HandlerStack::create();
+
+        foreach ($this->middlewares as $name => $middleware) {
+            $this->handlerStack->push($middleware, $name);
+        }
+
+        return $this->handlerStack;
+    }
+
+    public function pushMiddleware(callable $middleware, string $name)
+    {
+        $this->middlewares[$name] = $middleware;
+
+        return $this;
     }
 
     protected function getBaseOptions()
     {
         $options = [
             'base_uri' => $this->getBaseUri(),
-            'timeout'  => $this->getTimeout() ?: 3,
+            'timeout'  => $this->timeout,
         ];
 
         return $options;
@@ -80,8 +115,6 @@ trait HasHttpRequest
     }
 
     abstract function getBaseUri();
-
-    abstract function getTimeout();
 
     abstract function requestOptions();
 
