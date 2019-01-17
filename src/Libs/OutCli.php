@@ -11,17 +11,17 @@ namespace Ddup\Part\Libs;
 
 class OutCli
 {
-    public static function printLn($msg)
+    public static function printLn($msg, $color = null)
     {
         $msg      = self::formatMessage($msg);
-        $colorMsg = self::withColor($msg);
+        $colorMsg = self::withColor($msg, $color);
 
         echo "\n" . $colorMsg;
     }
 
-    private static function withColor($msg)
+    private static function withColor($msg, $color)
     {
-        return "\033[" . OutCliColor::red() . "m" . $msg . "\033[0m";
+        return "\033[" . ($color ?: OutCliColor::red()) . "m" . $msg . "\033[0m";
     }
 
     private static function formatMessage($msg)
