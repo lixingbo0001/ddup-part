@@ -3,9 +3,8 @@
 namespace Ddup\Part\Struct\Model;
 
 
-
-
-class ObjectModel{
+class ObjectModel
+{
 
     public $name;
     public $sex = 1;

@@ -6,7 +6,7 @@
  * Time: 下午8:01
  */
 
-namespace Ddup\Part\Struct\Test\Provider;
+namespace Ddup\Part\Test\Provider;
 
 
 use Ddup\Part\Struct\StructReadable;

@@ -1,7 +1,7 @@
 <?php namespace Ddup\Part\Conditions;
 
 use Ddup\Part\Message\MessageContract;
-use Ddup\Part\Conditions\Contracts\ConditionContract;
+use Ddup\Part\Contracts\ConditionContract;
 
 class Equal implements ConditionContract
 {

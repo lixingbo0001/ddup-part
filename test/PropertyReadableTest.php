@@ -6,10 +6,10 @@
  * Time: 下午7:43
  */
 
-namespace Ddup\Part\Struct\Test;
+namespace Ddup\Part\Test;
 
 
-use Ddup\Part\Struct\Test\Provider\UserOptionProvider;
+use Ddup\Part\Test\Provider\UserOptionProvider;
 use PHPUnit\Framework\TestCase;
 
 class PropertyReadableTest extends TestCase

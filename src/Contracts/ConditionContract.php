@@ -6,7 +6,7 @@
  * Time: 下午4:15
  */
 
-namespace Ddup\Part\Conditions\Contracts;
+namespace Ddup\Part\Contracts;
 
 use Ddup\Part\Message\MessageContract;
 

@@ -3,7 +3,8 @@
 namespace Ddup\Part\Struct\Model;
 
 
-class DataModel{
+class DataModel
+{
     public $name;
     public $desc;
 }
