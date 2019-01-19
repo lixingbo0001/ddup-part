@@ -38,5 +38,19 @@ class PropertyReadableTest extends TestCase
         $this->assertEquals('不是属性', $object->get('not_exists'));
     }
 
+    public function test_valuesEqaul()
+    {
+        $data = [
+            'age'   => 19,
+            'sex'   => 'boy',
+            'name'  => 'blue',
+            'hobby' => null
+        ];
+
+        $object = new UserOptionProvider($data);
+
+        $this->assertEquals($object->toArray(), $data);
+    }
+
 
 }

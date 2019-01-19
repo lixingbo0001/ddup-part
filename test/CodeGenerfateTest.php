@@ -5,7 +5,7 @@ namespace Ddup\Part\Test;
 
 use Ddup\Part\Code\CodeGenerateService;
 use Ddup\Part\Code\CodeGettingService;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class CodeGenerfateTest extends TestCase
 {

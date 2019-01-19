@@ -6,11 +6,10 @@
  * Time: 上午11:50
  */
 
-namespace App\Services\Row;
+namespace Ddup\Part\Curd;
 
 
 use Ddup\Part\Contracts\RowContainerInterface;
-use Ddup\Part\Curd\CurdServiceTrait;
 use Ddup\Part\Libs\Helper;
 use Ddup\Part\Single\SingleAble;
 
