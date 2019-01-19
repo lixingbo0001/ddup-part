@@ -50,14 +50,23 @@ class StructReadable implements Arrayable
 
     private function set($attr, $value)
     {
-        if (in_array($attr, $this->attrs())) {
+        if (in_array($attr, $this->propertys())) {
             $this->$attr = $value;
         }
     }
 
-    private function attrs()
+    private function propertys()
     {
-        return array_keys(get_object_vars($this));
+        return array_keys($this->values());
+    }
+
+    private function values()
+    {
+        $attrs = get_object_vars($this);
+
+        array_forget($attrs, ['attrs']);
+
+        return $attrs;
     }
 
     public function get($name, $default = null)
@@ -67,6 +76,6 @@ class StructReadable implements Arrayable
 
     public function toArray()
     {
-        return get_object_vars($this);
+        return $this->values();
     }
 }
