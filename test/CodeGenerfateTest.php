@@ -5,6 +5,7 @@ namespace Ddup\Part\Test;
 
 use Ddup\Part\Code\CodeGenerateService;
 use Ddup\Part\Code\CodeGettingService;
+use Ddup\Part\Test\Provider\CodePoolProvider;
 use PHPUnit\Framework\TestCase;
 
 class CodeGenerfateTest extends TestCase
@@ -12,9 +13,9 @@ class CodeGenerfateTest extends TestCase
 
     public function testGeernate()
     {
-        $name          = 'coupon_code_222';
-        $code_genarate = new CodeGenerateService($name);
-        $code_getting  = new CodeGettingService($name);
+        $pool          = new CodePoolProvider();
+        $code_genarate = new CodeGenerateService($pool);
+        $code_getting  = new CodeGettingService($pool);
 
         $code_genarate->number(10, 12);
 
@@ -24,9 +25,8 @@ class CodeGenerfateTest extends TestCase
 
     public function testStock()
     {
-        $name = 'coupon_code_222';
-
-        $code_getting = new CodeGettingService($name);
+        $pool         = new CodePoolProvider();
+        $code_getting = new CodeGettingService($pool);
 
         $stock = $code_getting->stock();
 
