@@ -9,6 +9,7 @@
 namespace Ddup\Part\Code;
 
 
+use Ddup\Part\Contracts\CodePoolInteface;
 use Ddup\Part\Libs\Str;
 
 class CodeGenerateService
@@ -16,9 +17,9 @@ class CodeGenerateService
 
     private $pool;
 
-    public function __construct($name)
+    public function __construct(CodePoolInteface $pool)
     {
-        $this->pool = new CodePool($name);
+        $this->pool = $pool;
     }
 
     private function numberRandom($len)

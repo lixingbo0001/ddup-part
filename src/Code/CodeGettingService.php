@@ -8,13 +8,15 @@
 
 namespace Ddup\Part\Code;
 
+use Ddup\Part\Contracts\CodePoolInteface;
+
 class CodeGettingService
 {
     private $pool;
 
-    public function __construct($name)
+    public function __construct(CodePoolInteface $pool)
     {
-        $this->pool = new CodePool($name);
+        $this->pool = $pool;
     }
 
     public function pop()

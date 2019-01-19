@@ -6,7 +6,7 @@
  * Time: 下午5:58
  */
 
-namespace Ddup\Part\Row;
+namespace Ddup\Part\Contracts;
 
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -14,6 +14,8 @@ use Illuminate\Contracts\Support\Arrayable;
 interface RowContainerInterface extends Arrayable
 {
     function attr($name);
+
+    function getRow();
 
     function toArray();
 }

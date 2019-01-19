@@ -1,7 +1,7 @@
 <?php namespace Ddup\Part\Curd;
 
+use Ddup\Part\Contracts\RowContainerInterface;
 use PHPUnit\Runner\Exception;
-use Providers\Row\RowContainerInterface;
 use Illuminate\Support\Collection;
 
 
