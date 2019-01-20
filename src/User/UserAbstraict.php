@@ -2,9 +2,12 @@
 
 
 use Ddup\Part\Libs\Helper;
+use Ddup\Part\Message\AttributeAble;
 
 abstract class UserAbstraict implements UserInterface
 {
+    use AttributeAble;
+
     protected $model;
 
     public function model()
