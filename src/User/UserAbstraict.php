@@ -10,6 +10,10 @@ abstract class UserAbstraict implements UserInterface
 
     protected $model;
 
+    protected function __construct()
+    {
+    }
+
     public function model()
     {
         return $this->model;

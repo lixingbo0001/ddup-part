@@ -12,6 +12,11 @@ trait AttributeAble
 {
     protected $attributes = [];
 
+    public function attributes()
+    {
+        return $this->attributes;
+    }
+
     public function getAttribute($name, $default = null)
     {
         return isset($this->attributes[$name]) ? $this->attributes[$name] : $default;
@@ -49,5 +54,10 @@ trait AttributeAble
     public function offsetUnset($offset)
     {
         unset($this->attributes[$offset]);
+    }
+
+    public function toArray()
+    {
+        return $this->attributes();
     }
 }
