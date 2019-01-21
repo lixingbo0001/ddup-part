@@ -37,11 +37,14 @@ trait HasHttpRequest
 
     public function post($endpoint, $data, $query = [])
     {
-        $data = array_merge($data, $this->requestParams());
-
         $options['query'] = $query;
 
-        $options['form_params'] = $data;
+        if (is_array($data)) {
+            $data                   = array_merge($data, $this->requestParams());
+            $options['form_params'] = $data;
+        } else {
+            $options['body'] = $data;
+        }
 
         return $this->request('post', $endpoint, $options);
     }
