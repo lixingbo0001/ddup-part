@@ -4,39 +4,38 @@ namespace Ddup\Part\Struct;
 
 use Ddup\Part\Libs\Helper;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
 
 class StructReadable implements Arrayable
 {
     private $attrs = [];
 
-    public function __construct($data = [])
+    public function __construct($data = [], TransformAble $transformer = null)
     {
-        $this->transforData($data);
+        $fomated = $this->format($data);
+
+        $this->batchSet($fomated);
+
+        if ($transformer) {
+            $transformer->transform($this, new Collection($fomated));
+        }
     }
 
-    private function transforData($original)
+    private function format($original)
     {
 
         switch (gettype($original)) {
             case 'string':
-                $data = json_encode($original, true);
-                $this->batchSet($data);
-                return;
-                break;
+                return json_encode($original, true);
             case 'array':
-                $this->batchSet($original);
-                return;
-                break;
+                return $original;
         }
 
         if ($original instanceof StructReadable) {
-            $this->batchSet($original->toArray());
-            return;
+            return $original->toArray();
         }
 
-        $propertys = Helper::toArray($original);
-
-        $this->batchSet($propertys);
+        return Helper::toArray($original);
     }
 
     private function batchSet($propertys)

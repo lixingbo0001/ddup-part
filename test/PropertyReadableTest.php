@@ -10,6 +10,7 @@ namespace Ddup\Part\Test;
 
 
 use Ddup\Part\Test\Provider\UserOptionProvider;
+use Ddup\Part\Test\Provider\UserStructTransform;
 use PHPUnit\Framework\TestCase;
 
 class PropertyReadableTest extends TestCase
@@ -50,6 +51,22 @@ class PropertyReadableTest extends TestCase
         $object = new UserOptionProvider($data);
 
         $this->assertEquals($object->toArray(), $data);
+    }
+
+    public function test_transform()
+    {
+        $data = [
+            'xingbie'  => 'boy',
+            'nianling' => 18,
+            'mingzi'   => '你猜'
+        ];
+
+        $user = new UserOptionProvider($data, new UserStructTransform());
+
+        $this->assertEquals($data['xingbie'], $user->sex);
+        $this->assertEquals($data['mingzi'], $user->name);
+        $this->assertEquals($data['nianling'], $user->age);
+        $this->assertEquals(18, $user->age);
     }
 
 
