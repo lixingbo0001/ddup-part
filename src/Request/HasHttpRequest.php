@@ -28,14 +28,14 @@ trait HasHttpRequest
     protected $timeout     = 3;
     protected $middlewares = [];
 
-    protected function get($endpoint, $query = [])
+    public function get($endpoint, $query = [])
     {
         return $this->request('get', $endpoint, [
             'query' => array_merge($query, $this->requestParams()),
         ]);
     }
 
-    protected function post($endpoint, $data, $query = [])
+    public function post($endpoint, $data, $query = [])
     {
         $data = array_merge($data, $this->requestParams());
 
@@ -46,7 +46,7 @@ trait HasHttpRequest
         return $this->request('post', $endpoint, $options);
     }
 
-    protected function json($endpoint, $data, $query = [])
+    public function json($endpoint, $data, $query = [])
     {
         $data = array_merge($data, $this->requestParams());
 
@@ -56,7 +56,7 @@ trait HasHttpRequest
         return $this->request('post', $endpoint, $options);
     }
 
-    protected function request($method, $endpoint, $options = [])
+    public function request($method, $endpoint, $options = [])
     {
         $options = array_merge($this->requestOptions(), ['handler' => $this->getHandlerStack()], $options);
 
