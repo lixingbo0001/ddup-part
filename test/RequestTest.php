@@ -2,18 +2,19 @@
 
 namespace Ddup\Part\Test;
 
+use Ddup\Part\Api\ApiResultInterface;
 use Ddup\Part\Api\ApiResulTrait;
 use Ddup\Part\Test\Provider\LoggerProvider;
 use Ddup\Part\Test\Provider\MyClient;
 use Ddup\Part\Test\Provider\ResultProvider;
 use GuzzleHttp\MessageFormatter;
 
-class RequestTest extends \PHPUnit\Framework\TestCase
+class RequestTest extends TestCase
 {
     use ApiResulTrait;
     use MyClient;
 
-    public function newResult($ret):\Ddup\Part\Api\ApiResultInterface
+    public function newResult($ret):ApiResultInterface
     {
         return new ResultProvider($ret);
     }
