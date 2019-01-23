@@ -181,15 +181,13 @@ Class Arr
         return $min;
     }
 
-    static public function getNotNull(Array $arr)
+    static function filterCallback(&$arr, $callback)
     {
-        $result = [];
-        foreach ($arr as $name => $value) {
-            if (isset($arr[$name])) {
-                $result[$name] = $arr[$name];
+        foreach ($arr as $key => $value) {
+            if ($callback($key, $value)) {
+                array_forget($arr, $key);
             }
         }
-        return $result;
     }
 }
 
