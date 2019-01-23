@@ -39,7 +39,7 @@ class MsgToXml
                 $this->write($value);
                 $this->xml->endElement();
             } else {
-                $this->xml->writeElement($key, $value);
+                if (!is_null($value)) $this->xml->writeElement($key, $value);
             }
         }
     }
