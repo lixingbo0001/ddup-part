@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class StructReadable implements Arrayable
 {
-    private $attrs = [];
+    protected $attrs = [];
 
     public function __construct($data = [], TransformAble $transformer = null)
     {
