@@ -30,23 +30,38 @@ class RequestTest extends TestCase
 
     public function test_json()
     {
-        $response = $this->json('', ['age' => 20]);
 
-        $this->parseResult($response);
+        try {
+            $response = $this->json('', ['age' => 20]);
 
-        $this->assertNotNull($response);
+            $this->parseResult($response);
 
-        $this->assertEquals('application/json', $this->result()->getData()->get('CONTENT_TYPE'));
+            $this->assertNotNull($response);
 
-        $this->assertTrue($this->result()->isSuccess());
+            $this->assertEquals('application/json', $this->result()->getData()->get('CONTENT_TYPE'));
+
+            $this->assertTrue($this->result()->isSuccess());
+
+        } catch (\Exception $exception) {
+            $this->assertNotFalse(strpos($exception->getMessage(), 'Connection refused'), '没开服务');
+        }
+
     }
 
     public function test_post()
     {
-        $response = $this->post('', ['age' => 20]);
 
-        $this->parseResult($response);
+        try {
 
-        $this->assertEquals('application/x-www-form-urlencoded', $this->result()->getData()->get('CONTENT_TYPE'));
+            $response = $this->post('', ['age' => 20]);
+
+            $this->parseResult($response);
+
+            $this->assertEquals('application/x-www-form-urlencoded', $this->result()->getData()->get('CONTENT_TYPE'));
+
+        } catch (\Exception $exception) {
+            $this->assertNotFalse(strpos($exception->getMessage(), 'Connection refused'), '没开服务');
+        }
+
     }
 }
