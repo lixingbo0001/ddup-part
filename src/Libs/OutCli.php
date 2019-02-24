@@ -9,24 +9,32 @@
 namespace Ddup\Part\Libs;
 
 
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+
 class OutCli
 {
     public static function printLn($msg, $color = null)
     {
-        $msg      = self::formatMessage($msg);
-        $colorMsg = self::withColor($msg, $color);
+        $msg    = self::formatMessage($msg);
+        $dumper = new CliDumper();
 
-        echo "\n" . $colorMsg;
-    }
+        if (!$color) {
+            $color = OutCliColor::green();
+        }
 
-    private static function withColor($msg, $color)
-    {
-        return "\033[" . ($color ?: OutCliColor::red()) . "m" . $msg . "\033[0m";
+        $dumper->setStyles([
+            'default' => $color,
+            'key'     => $color,
+            'str'     => $color,
+        ]);
+
+        $dumper->dump((new VarCloner())->cloneVar($msg));
     }
 
     private static function formatMessage($msg)
     {
-        if (is_array($msg) || is_object($msg)) return json_encode(Helper::toArray($msg), JSON_UNESCAPED_UNICODE);
+        if (is_object($msg)) $msg = Helper::toArray($msg);
 
         return $msg;
     }
