@@ -13,9 +13,13 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Response extends \Illuminate\Http\Response
 {
+
     private $_code = 'success';
     private $_msg;
     private $_data;
+
+    private $code_success = 'success';
+    private $code_fail    = 'fail';
 
     function data($data)
     {
@@ -37,14 +41,19 @@ class Response extends \Illuminate\Http\Response
 
     function success()
     {
-        $this->_code = 'success';
+        $this->_code = $this->code_success;
 
         return self::updateContent();
     }
 
+    function isSuccess()
+    {
+        return $this->_code == $this->code_success;
+    }
+
     function fail()
     {
-        $this->_code = 'fail';
+        $this->_code = $this->code_fail;
 
         return self::updateContent();
     }
