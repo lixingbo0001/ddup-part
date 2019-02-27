@@ -9,6 +9,8 @@
 namespace Ddup\Part\Response;
 
 
+use Illuminate\Contracts\Support\Arrayable;
+
 class Response extends \Illuminate\Http\Response
 {
     private $_code = 'success';
@@ -17,6 +19,10 @@ class Response extends \Illuminate\Http\Response
 
     function data($data)
     {
+        if ($data instanceof Arrayable) {
+            $data = $data->toArray();
+        }
+
         $this->_data = $data;
 
         return self::updateContent();
