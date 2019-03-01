@@ -6,7 +6,7 @@
  * Time: 下午1:41
  */
 
-namespace App\Ext;
+namespace Ddup\Part\Response;
 
 
 use Illuminate\Contracts\Support\Arrayable;
