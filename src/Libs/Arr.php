@@ -11,10 +11,16 @@ Class Arr
         });
     }
 
-    static public function format($arr, $fun)
+    static public function format($arr, $callable, $method = null)
     {
-        return array_map(function ($v) use ($fun) {
-            return $fun($v);
+        if ($method) {
+            return array_map(function ($v) use ($callable, $method) {
+                return $callable->$method($v);
+            }, $arr);
+        }
+
+        return array_map(function ($v) use ($callable) {
+            return $callable($v);
         }, $arr);
     }
 
