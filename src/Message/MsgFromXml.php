@@ -9,7 +9,6 @@
 namespace Ddup\Part\Message;
 
 
-
 class MsgFromXml extends MessageContract
 {
 
@@ -17,7 +16,13 @@ class MsgFromXml extends MessageContract
 
     public function __construct($xml)
     {
-        $this->arr = $this->xmlObjToArray(simplexml_load_string($xml));
+        $obj = @simplexml_load_string($xml);
+
+        if (!$obj) {
+            throw new \Exception('无效的xml内容:' . $xml);
+        }
+
+        $this->arr = $this->xmlObjToArray($obj);
     }
 
     private function xmlObjToArray($obj)
