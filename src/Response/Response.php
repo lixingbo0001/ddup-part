@@ -18,6 +18,8 @@ class Response extends \Illuminate\Http\Response
     private $_data;
     private $_extend = [];
 
+    private $_code_success = 'success';
+
     function data($data)
     {
         if ($data instanceof Arrayable) {
@@ -38,9 +40,14 @@ class Response extends \Illuminate\Http\Response
 
     function success()
     {
-        $this->_code = 'success';
+        $this->_code = $this->_code_success;
 
         return self::updateContent();
+    }
+
+    function isSuccess()
+    {
+        return $this->_code == $this->_code_success;
     }
 
     function fail()
