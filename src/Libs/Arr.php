@@ -163,6 +163,9 @@ Class Arr
         $result = [];
 
         foreach ($list as $k => $v) {
+
+            if (!isset($v[$k])) continue;
+
             if ($v[$key] == $value) {
                 $result[] = array_pull($list, $k);
             }
