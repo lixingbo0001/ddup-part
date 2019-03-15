@@ -198,6 +198,17 @@ Class Arr
             }
         }
     }
+
+    static function group($arr, $k)
+    {
+        $result = [];
+
+        foreach ($arr as $row) {
+            $result[$row[$k]][] = $row;
+        }
+
+        return $result;
+    }
 }
 
 
