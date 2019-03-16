@@ -209,6 +209,17 @@ Class Arr
 
         return $result;
     }
+
+    static function firstInString($keywords, $str)
+    {
+        $whitelist = "/" . implode("|", $keywords) . "/i";
+
+        if (preg_match($whitelist, $str, $matches)) {
+            return $matches[0];
+        }
+
+        return null;
+    }
 }
 
 
