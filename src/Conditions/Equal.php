@@ -10,11 +10,7 @@ class Equal implements ConditionContract
     {
         $xmlAttrValue = $message->get($key);
 
-        if ($xmlAttrValue === null) {
-            return false;
-        }
-
-        return $xmlAttrValue == $expect;
+        return $xmlAttrValue === $expect;
     }
 
     public function getName()
