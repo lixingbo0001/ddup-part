@@ -11,6 +11,7 @@ namespace Ddup\Part\Request;
 
 class Query
 {
+    private $_uri;
     private $_query;
     private $_path;
 
@@ -48,6 +49,11 @@ class Query
         if (isset($this->_query[$name])) {
             $this->_query[$name] = $value;
         }
+    }
+
+    public function getHost()
+    {
+        return array_get(parse_url($this->_uri), 'host');
     }
 
     public function remove($name)
