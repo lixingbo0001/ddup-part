@@ -55,7 +55,7 @@ class Query
         array_forget($this->_query, $name);
     }
 
-    public function all()
+    public function getQueryParams()
     {
         return $this->_query;
     }
