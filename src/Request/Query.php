@@ -55,6 +55,11 @@ class Query
         array_forget($this->_query, $name);
     }
 
+    public function get($name, $default = null)
+    {
+        return array_get($this->_query, $name, $default);
+    }
+
     public function __toString()
     {
         return $this->getString();
