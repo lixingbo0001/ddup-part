@@ -43,6 +43,18 @@ class Query
         return $url;
     }
 
+    public function replace($name, $value)
+    {
+        if (isset($this->_query[$name])) {
+            $this->_query[$name] = $value;
+        }
+    }
+
+    public function remove($name)
+    {
+        array_forget($this->_query, $name);
+    }
+
     public function __toString()
     {
         return $this->getString();
