@@ -26,7 +26,7 @@ class StructReadable implements Arrayable
 
         switch (gettype($original)) {
             case 'string':
-                return json_encode($original, true);
+                return (array)json_encode($original, true);
             case 'array':
                 return $original;
         }
