@@ -164,7 +164,7 @@ Class Arr
 
         foreach ($list as $k => $v) {
 
-            if (!isset($v[$k])) continue;
+            if (!isset($v[$key])) continue;
 
             if ($v[$key] == $value) {
                 $result[] = array_pull($list, $k);
