@@ -15,7 +15,7 @@ class NotEqual implements ConditionContract
 
     public function getName()
     {
-        return 'equal';
+        return 'not_equal';
     }
 
 }
