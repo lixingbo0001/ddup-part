@@ -47,4 +47,13 @@ Class Str
         }
         return $str;
     }
+
+    static public function replaceOfIndex($str, $leftLen, $rightLen)
+    {
+        if ($leftLen + $rightLen > strlen($str)) {
+            return $str;
+        }
+
+        return substr($str, $leftLen) . '***' . substr($str, -$rightLen);
+    }
 }
