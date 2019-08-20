@@ -18,7 +18,7 @@ Trait  CurdServiceTrait
     public function check($row, $msg = '')
     {
         if (!$row) {
-            throw  new Exception("{$msg}不存在");
+            throw  new Exception("{$msg}不存在", 0011);
         }
     }
 
