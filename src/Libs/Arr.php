@@ -199,12 +199,16 @@ Class Arr
         }
     }
 
-    static function group($arr, $k)
+    static function group($arr, $k, $is_multi = true)
     {
         $result = [];
 
         foreach ($arr as $row) {
-            $result[$row[$k]][] = $row;
+            if ($is_multi) {
+                $result[$row[$k]][] = $row;
+            } else {
+                $result[$row[$k]] = $row;
+            }
         }
 
         return $result;
