@@ -47,14 +47,14 @@ class StructReadable implements Arrayable
         }
     }
 
-    private function set($attr, $value)
+    protected function set($attr, $value)
     {
         if (in_array($attr, $this->propertys())) {
             $this->$attr = $value;
         }
     }
 
-    private function propertys()
+    protected function propertys()
     {
         return array_keys($this->values());
     }
