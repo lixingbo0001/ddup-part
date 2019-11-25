@@ -5,13 +5,13 @@ namespace Ddup\Part\Struct;
 
 class StructCompleteReadable extends StructReadable
 {
-    private function set($attr, $value)
+    protected function set($attr, $value)
     {
         $this->$attr        = $value;
         $this->attrs[$attr] = $value;
     }
 
-    private function values()
+    protected function values()
     {
         return $this->attrs;
     }

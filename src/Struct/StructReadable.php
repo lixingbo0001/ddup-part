@@ -21,7 +21,7 @@ class StructReadable implements Arrayable
         }
     }
 
-    private function format($original)
+    protected function format($original)
     {
 
         switch (gettype($original)) {
@@ -38,7 +38,7 @@ class StructReadable implements Arrayable
         return Helper::toArray($original);
     }
 
-    private function batchSet($propertys)
+    protected function batchSet($propertys)
     {
         $this->attrs = $propertys;
 
@@ -59,7 +59,7 @@ class StructReadable implements Arrayable
         return array_keys($this->values());
     }
 
-    private function values()
+    protected function values()
     {
         $attrs = get_object_vars($this);
 
