@@ -9,6 +9,8 @@
 namespace Ddup\Part\Request;
 
 
+use Illuminate\Support\Arr;
+
 class Query
 {
     private $_uri;
@@ -24,8 +26,8 @@ class Query
     private function parse($url)
     {
         $arr       = explode('?', $url);
-        $path      = array_get($arr, 0, '');
-        $query_str = array_get($arr, 1, '');
+        $path      = Arr::get($arr, 0, '');
+        $query_str = Arr::get($arr, 1, '');
 
         parse_str($query_str, $query);
 
@@ -53,12 +55,12 @@ class Query
 
     public function getHost()
     {
-        return array_get(parse_url($this->_uri), 'host');
+        return Arr::get(parse_url($this->_uri), 'host');
     }
 
     public function remove($name)
     {
-        array_forget($this->_query, $name);
+        Arr::forget($this->_query, $name);
     }
 
     public function getQueryParams()
@@ -68,7 +70,7 @@ class Query
 
     public function get($name, $default = null)
     {
-        return array_get($this->_query, $name, $default);
+        return Arr::get($this->_query, $name, $default);
     }
 
     public function __toString()

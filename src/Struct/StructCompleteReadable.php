@@ -3,6 +3,8 @@
 namespace Ddup\Part\Struct;
 
 
+use Illuminate\Support\Arr;
+
 class StructCompleteReadable extends StructReadable
 {
     protected function set($attr, $value)
@@ -18,7 +20,7 @@ class StructCompleteReadable extends StructReadable
 
     public function get($name, $default = null)
     {
-        return array_get($this->attrs, $name, $default);
+        return Arr::get($this->attrs, $name, $default);
     }
 
     public function toArray()

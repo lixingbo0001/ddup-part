@@ -1,5 +1,6 @@
 <?php namespace Ddup\Part\Libs;
 
+use \Illuminate\Support\Arr;
 
 class Url
 {
@@ -7,10 +8,10 @@ class Url
     public static function query($url, $params = [])
     {
         $request = parse_url($url);
-        $scheme  = array_get($request, 'scheme');
-        $host    = array_get($request, 'host');
-        $path    = array_get($request, 'path');
-        $query   = array_get($request, 'query', '');
+        $scheme  = Arr::get($request, 'scheme');
+        $host    = Arr::get($request, 'host');
+        $path    = Arr::get($request, 'path');
+        $query   = Arr::get($request, 'query', '');
 
         parse_str($query, $query_arr);
 

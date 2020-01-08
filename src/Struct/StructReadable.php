@@ -4,6 +4,7 @@ namespace Ddup\Part\Struct;
 
 use Ddup\Part\Libs\Helper;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class StructReadable implements Arrayable
@@ -63,14 +64,14 @@ class StructReadable implements Arrayable
     {
         $attrs = get_object_vars($this);
 
-        array_forget($attrs, ['attrs']);
+        Arr::forget($attrs, ['attrs']);
 
         return $attrs;
     }
 
     public function get($name, $default = null)
     {
-        return array_get($this->attrs, $name, $default);
+        return Arr::get($this->attrs, $name, $default);
     }
 
     public function toArray()

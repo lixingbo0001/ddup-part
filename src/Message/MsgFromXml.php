@@ -9,6 +9,8 @@
 namespace Ddup\Part\Message;
 
 
+use Illuminate\Support\Arr;
+
 class MsgFromXml extends MessageContract
 {
 
@@ -39,12 +41,12 @@ class MsgFromXml extends MessageContract
 
     public function get($attr, $def = null)
     {
-        return array_get($this->arr, $attr, $def);
+        return Arr::get($this->arr, $attr, $def);
     }
 
     public function set($attr, $value)
     {
-        array_set($this->arr, $attr, $value);
+        Arr::set($this->arr, $attr, $value);
     }
 
     public function toArray()

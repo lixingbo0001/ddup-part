@@ -194,7 +194,7 @@ Class Arr
     {
         foreach ($arr as $key => $value) {
             if ($callback($key, $value)) {
-                array_forget($arr, $key);
+                \Illuminate\Support\Arr::forget($arr, $key);
             }
         }
     }

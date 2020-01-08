@@ -24,5 +24,7 @@ class OutcliTest extends TestCase
                 'context' => ['name' => 'green']
             ]
         ]);
+
+        $this->assertTrue(true);
     }
 }
