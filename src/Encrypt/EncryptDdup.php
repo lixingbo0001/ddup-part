@@ -11,7 +11,7 @@ namespace Ddup\Part\Encrypt;
 
 use Ddup\Part\Libs\Arr;
 
-class EncrypteDdup
+class EncryptDdup
 {
     private $_maxSize = 11;
 

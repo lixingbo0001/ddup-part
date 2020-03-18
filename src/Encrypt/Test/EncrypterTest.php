@@ -9,7 +9,7 @@
 namespace App\Tool\Auth\Simple\Test;
 
 
-use Ddup\Part\Encrypt\EncrypteDdup;
+use Ddup\Part\Encrypt\EncryptDdup;
 use Ddup\Part\Test\TestCase;
 
 class EncrypterTest extends TestCase
@@ -18,7 +18,7 @@ class EncrypterTest extends TestCase
 
     function test_encode()
     {
-        $encrypter = new EncrypteDdup();
+        $encrypter = new EncryptDdup();
 
         $sign   = "12344444382838232332s32" . time();
         $origin = "aaa7(Njdjsdf((#KEnldlksjaklfdjkladdsad";
@@ -33,7 +33,7 @@ class EncrypterTest extends TestCase
 
     function test_encodeCritical()
     {
-        $encrypter = new EncrypteDdup();
+        $encrypter = new EncryptDdup();
 
         try {
             $sign = str_repeat("a", 63);

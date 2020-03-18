@@ -167,7 +167,7 @@ Class Arr
             if (!isset($v[$key])) continue;
 
             if ($v[$key] == $value) {
-                $result[] = array_pull($list, $k);
+                $result[] = \Illuminate\Support\Arr::pull($list, $k);
             }
         }
         return $result;
