@@ -16,9 +16,11 @@ class Query
     private $_uri;
     private $_query;
     private $_path;
+    private $_encode;
 
-    public function __construct($url, array $more_query = [])
+    public function __construct($url, array $more_query = [], $encode = true)
     {
+        $this->_encode = $encode;
         $this->parse($url);
         $this->pushQuery($more_query);
     }
@@ -40,7 +42,18 @@ class Query
         $url = $this->_path;
 
         if ($this->_query) {
-            $url = $url . '?' . http_build_query($this->_query);
+            if ($this->_encode) {
+                $url = $url . '?' . http_build_query($this->_query);
+            } else {
+
+                $tmp = [];
+
+                foreach ($this->_query as $k => $v) {
+                    $tmp[] = "{$k}={$v}";
+                }
+
+                $url = $url . '?' . join('&', $tmp);
+            }
         }
 
         return $url;
